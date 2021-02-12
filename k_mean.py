@@ -6,11 +6,16 @@ import matplotlib.pyplot as plt
 import os
 plt.rcParams['figure.figsize'] = (8, 6)
 
-
 os.system("rm -rf shots; mkdir -p shots;")
 
 
 def distance(p1, p2):
+    """
+    INPUTS:
+        p1, p2: two sample points
+    RETURNS:
+        d: L2 Norm distance between p1 & p2
+    """
     assert len(p1) == len(p2)
     
     ret = 0
@@ -41,7 +46,6 @@ def draw_this(df, centers, fno):
     plt.clf()
     plt.scatter(X, Y)
     plt.scatter(X1, Y1)
-
     plt.savefig('shots/'+str(fno)+'.png')
 
 
@@ -92,11 +96,7 @@ def k_mean(X, K):
         new_centers = pd.DataFrame()
         for i in clusters:
             clusters[i] = clusters[i].astype(int)
-            new_centers = new_centers.append(centroid(clusters[i]), ignore_index=True)
-        
-#         print(new_centers.iloc[0])
-
-            
+            new_centers = new_centers.append(centroid(clusters[i]), ignore_index=True)            
             
         draw_this(df, centers, xyz)
             
@@ -104,11 +104,8 @@ def k_mean(X, K):
         if pd.DataFrame.equals(centers, new_centers):
             print('Terminating after ', xyz, ' steps.')
             break
-        
-        centers =  new_centers
-        
-        # Find the cost
-        total_cost = 0
+        else:
+            centers =  new_centers
 
 print('.'*50)
 mat = []

@@ -1,4 +1,4 @@
 run:
-	python3 k_mean_illustration.py
+	python3 k_mean.py
 draw:
 	python3 draw.py

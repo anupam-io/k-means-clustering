@@ -4,7 +4,7 @@ cur_dir = os.getcwd()
 images = []
 
 filenames = []
-for i in range(7):
+for i in range(6):
     filenames.append(cur_dir+'/shots/'+str(i)+'.png')
 
 for filename in filenames:
